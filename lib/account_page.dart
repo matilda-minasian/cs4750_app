@@ -15,7 +15,6 @@ class _AccountPageState extends State<AccountPage> {
     future: Firebase.initializeApp();
     var user = FirebaseAuth.instance.currentUser!;
     final uemail = user.email.toString();
-    print(uemail);
     return Scaffold(
       appBar: AppBar(
         title: Text('My Account'),
