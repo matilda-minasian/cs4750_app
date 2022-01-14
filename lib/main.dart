@@ -65,10 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
       Center(
         child: Column(
           children: <Widget>[
-            // Container(
-            //   child:
-            //   Image(image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5Epj-JqKDn8vmA0uswkDFG3srQyMX4zrw5-FQi20P-SFr97VhG4O7K9Z3uB7-bvKpEi4&usqp=CAU'),),
-            // ),
+            Container(
+              height: 100,
+              child:
+              Image(image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5Epj-JqKDn8vmA0uswkDFG3srQyMX4zrw5-FQi20P-SFr97VhG4O7K9Z3uB7-bvKpEi4&usqp=CAU'),),
+
+            ),
             Container(
               width: 300,
               margin: EdgeInsets.only(top:40),
