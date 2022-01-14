@@ -14,6 +14,12 @@ class _ListPageState extends State<ListPage> {
       appBar: AppBar(
         title: Text('My Lists'),
       ),
+      body:
+      Column(
+        children: [
+          Text('List'),
+        ],
+      )
     );
   }
 }

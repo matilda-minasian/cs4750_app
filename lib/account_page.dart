@@ -14,6 +14,12 @@ class _AccountPageState extends State<AccountPage> {
       appBar: AppBar(
         title: Text('My Account'),
       ),
+      body:
+      Column(
+        children: [
+          Text('Account'),
+        ],
+      ),
     );
   }
 }

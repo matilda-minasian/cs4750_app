@@ -13,11 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Icon customIcon = const Icon(Icons.search);
   Widget customSearchBar = const Text('My Personal Journal');
   int currentIndex = 0;
-  final screens = [
-    HomeScreen(),
-    ListBody(),
-    AccountPage(),
-  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         centerTitle: true,
       ),
-      body: screens[currentIndex],
+      // body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
