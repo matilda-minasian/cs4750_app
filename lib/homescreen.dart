@@ -11,12 +11,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Icon customIcon = const Icon(Icons.search);
   Widget customSearchBar = const Text('My Personal Journal');
-  int _selectedIndex = 0;
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,20 +59,19 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.forum_rounded),
+            activeIcon: Icon(Icons.forum_rounded, color: Colors.orange,),
             label: 'Forum',
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.list_rounded),
+            activeIcon: Icon(Icons.list_rounded, color: Colors.orange,),
             label: 'My Lists',
           ),
           BottomNavigationBarItem(
               icon: Icon(Icons.account_circle_rounded),
-            activeIcon: Icon(Icons.account_circle_rounded, color: Colors.orange),
             label: 'Account',
-
           ),
         ],
-
       ),
     );
   }
