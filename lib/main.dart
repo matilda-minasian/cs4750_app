@@ -1,3 +1,4 @@
+import 'package:cs4750app/bottomNav.dart';
 import 'package:cs4750app/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -64,10 +65,10 @@ class _MyHomePageState extends State<MyHomePage> {
       Center(
         child: Column(
           children: <Widget>[
-            Container(
-              child:
-              Image(image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5Epj-JqKDn8vmA0uswkDFG3srQyMX4zrw5-FQi20P-SFr97VhG4O7K9Z3uB7-bvKpEi4&usqp=CAU'),),
-            ),
+            // Container(
+            //   child:
+            //   Image(image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5Epj-JqKDn8vmA0uswkDFG3srQyMX4zrw5-FQi20P-SFr97VhG4O7K9Z3uB7-bvKpEi4&usqp=CAU'),),
+            // ),
             Container(
               width: 300,
               margin: EdgeInsets.only(top:40),
@@ -131,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        MaterialPageRoute(builder: (context) => BottomNav()),
                       );
                     },
                     child: Text('Login'),

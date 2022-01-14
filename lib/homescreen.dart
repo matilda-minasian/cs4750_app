@@ -1,4 +1,5 @@
 import 'package:cs4750app/account_page.dart';
+import 'package:cs4750app/list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -12,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Icon customIcon = const Icon(Icons.search);
   Widget customSearchBar = const Text('My Personal Journal');
-  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white,
                       ),
                     ),
-                  );                } else {
+                  );                }
+                else {
                   customSearchBar = const Text('Elite Book Club');
                   customIcon = const Icon(Icons.search);
                 }
@@ -57,27 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         centerTitle: true,
       ),
-      // body: screens[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index),
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.forum_rounded),
-            // activeIcon: Icon(Icons.forum_rounded, color: Colors.orange,),
-            label: 'Forum',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.list_rounded),
-            // activeIcon: Icon(Icons.list_rounded, color: Colors.orange,),
-            label: 'My Lists',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_rounded),
-            label: 'Account',
-          ),
-        ],
-      ),
+
     );
   }
 }
