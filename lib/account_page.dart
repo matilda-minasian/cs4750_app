@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:file_picker/file_picker.dart';
 class AccountPage extends StatefulWidget {
   const AccountPage({Key? key}) : super(key: key);
 
@@ -22,10 +24,35 @@ class _AccountPageState extends State<AccountPage> {
       body:
       Column(
         children: [
-          Container(
-             child:
-             Icon(Icons.account_box_rounded,size: 300,),
-              alignment: Alignment.center,
+          Column(
+            children: [
+              ElevatedButton(
+                child: Text("Upload Image"),
+                onPressed: () async {
+                  final results = await FilePicker.platform.pickFiles(
+                    allowMultiple: false,
+
+                    type: FileType.custom,
+                    allowedExtensions: ['png', 'jpg']
+                  );
+                  if(results == null)
+                    {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('No File Selected.')
+                        ),
+                      );
+                      return null;
+                    }
+                  final path = results.files.single.path!;
+                  final fileName = results.files.single.name;
+
+                  print(path);
+                  print(fileName);
+                },
+              )
+            ],
+             
           ),
           Container(
             child:
@@ -36,4 +63,5 @@ class _AccountPageState extends State<AccountPage> {
 
     );
   }
+
 }
