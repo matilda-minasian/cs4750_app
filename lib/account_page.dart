@@ -1,3 +1,4 @@
+import 'package:cs4750app/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,6 +15,7 @@ class _AccountPageState extends State<AccountPage> {
 
   @override
   Widget build(BuildContext context) {
+    final Storage storage= Storage();
     future: Firebase.initializeApp();
     var user = FirebaseAuth.instance.currentUser!;
     final uemail = user.email.toString();
@@ -22,8 +24,6 @@ class _AccountPageState extends State<AccountPage> {
         title: Text('My Account'),
       ),
       body:
-      Column(
-        children: [
           Column(
             children: [
               ElevatedButton(
@@ -47,20 +47,16 @@ class _AccountPageState extends State<AccountPage> {
                   final path = results.files.single.path!;
                   final fileName = results.files.single.name;
 
-                  print(path);
-                  print(fileName);
+                  storage.uploadFile(path, fileName).then((value) => print('done'));
                 },
-              )
+              ),
+              Container(
+                child:
+                Text(uemail,style: Theme.of(context).textTheme.headline5,),
+              ),
             ],
              
           ),
-          Container(
-            child:
-            Text(uemail,style: Theme.of(context).textTheme.headline5,),
-          ),
-        ],
-      ),
-
     );
   }
 
