@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     border: OutlineInputBorder(),
                     labelText: 'Password',
                   ),
-                )
+                ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -139,6 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     child: Text('Login'),
                   ),
+
                 ),
               ],
             )

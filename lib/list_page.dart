@@ -1,3 +1,4 @@
+import 'package:cs4750app/already_read.dart';
 import 'package:flutter/material.dart';
 
 class ListPage extends StatefulWidget {
@@ -16,8 +17,37 @@ class _ListPageState extends State<ListPage> {
       ),
       body:
       Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('List'),
+          Container(
+            alignment: Alignment.center,
+            child:
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AlreadyRead()),
+                );
+              },
+              child: Text('Already Read'),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            child:
+            ElevatedButton(
+              onPressed: () {},
+              child: Text('Currently Reading'),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            child:
+            ElevatedButton(
+              onPressed: () {},
+              child: Text('Want to Read'),
+            ),
+          ),
         ],
       )
     );

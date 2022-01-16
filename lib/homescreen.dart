@@ -1,4 +1,3 @@
-import 'package:cs4750app/account_page.dart';
 import 'package:cs4750app/list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
