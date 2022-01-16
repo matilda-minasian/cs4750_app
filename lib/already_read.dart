@@ -90,15 +90,21 @@ class _AlreadyReadState extends State<AlreadyRead> {
                   title: const Text("Add Book"),
                   content: Container(
                     width: 400,
-                    height: 100,
+                    height: 150,
                     child: Column(
                       children: [
                         TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Title'
+                          ),
                           onChanged: (String value) {
                             title = value;
                           },
                         ),
                         TextField(
+                          decoration: InputDecoration(
+                              labelText: 'Author'
+                          ),
                           onChanged: (String value) {
                             description = value;
                           },

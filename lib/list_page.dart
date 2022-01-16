@@ -23,41 +23,59 @@ class _ListPageState extends State<ListPage> {
         children: [
           Container(
             alignment: Alignment.center,
+            margin: EdgeInsets.all(20),
             child:
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AlreadyRead()),
-                );
-              },
-              child: Text('Already Read'),
+            SizedBox(
+              height: 50,
+              width: 200,
+              child:
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const AlreadyRead()),
+                  );
+                },
+                child: Text('Already Read'),
+              ),
             ),
           ),
           Container(
             alignment: Alignment.center,
+            margin: EdgeInsets.all(20),
             child:
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Current()),
-                );
-              },
-              child: Text('Currently Reading'),
+            SizedBox(
+              height: 50,
+              width: 200,
+              child:
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Current()),
+                  );
+                },
+                child: Text('Currently Reading'),
+              ),
             ),
           ),
           Container(
             alignment: Alignment.center,
+            margin: EdgeInsets.all(20),
             child:
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Want()),
-                );
-              },
-              child: Text('Want to Read'),
+            SizedBox(
+              height: 50,
+              width: 200,
+              child:
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Want()),
+                  );
+                },
+                child: Text('Want to Read'),
+              ),
             ),
           ),
         ],
