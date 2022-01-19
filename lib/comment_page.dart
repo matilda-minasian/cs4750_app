@@ -7,7 +7,7 @@ class Comments extends StatelessWidget {
   String title2 = "";
   String description = "";
   createToDo() {
-    DocumentReference documentReference = FirebaseFirestore.instance.collection('Comments').doc(title2);
+    DocumentReference documentReference = FirebaseFirestore.instance.collection('Comments').doc(title).collection('Comment').doc(title2);
     Map<String, String> readList = {
       "Title": title2,
       "Comment": description
@@ -17,7 +17,7 @@ class Comments extends StatelessWidget {
   deleteTodo(item) {
 
     DocumentReference documentReference =
-    FirebaseFirestore.instance.collection("Comments").doc(item);
+    FirebaseFirestore.instance.collection("Comments").doc(title).collection('Comment').doc(item);
 
     documentReference.delete().whenComplete(() => print("deleted successfully"));
   }
@@ -94,7 +94,7 @@ class Comments extends StatelessWidget {
                 Container(
                   child:
                   StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance.collection('Comments').snapshots(),
+                    stream: FirebaseFirestore.instance.collection('Comments').doc(title).collection('Comment').snapshots(),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         return Text('Something went wrong');
