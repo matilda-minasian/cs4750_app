@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Icon customIcon = const Icon(Icons.search);
-  Widget customSearchBar = const Text('My Personal Journal');
+  Widget customSearchBar = const Text('Elite Book Club');
   String title = "";
   String description = "";
   createToDo() {
