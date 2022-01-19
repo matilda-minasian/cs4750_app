@@ -11,18 +11,19 @@ class Current extends StatefulWidget {
 class _CurrentState extends State<Current> {
   String title = "";
   String description = "";
+  var user = FirebaseAuth.instance.currentUser;
   createToDo() {
-    DocumentReference documentReference = FirebaseFirestore.instance.collection('Currently Reading').doc(title);
+    DocumentReference documentReference = FirebaseFirestore.instance.collection('Currently Reading').doc(user?.uid).collection('Reading').doc(title);
     Map<String, String> readList = {
-      "currTitle": title,
-      "currDescription": description
+      "readingTitle": title,
+      "readingDescription": description
     };
     documentReference.set(readList).whenComplete(() => print("Data Stored"));
   }
   deleteTodo(item) {
 
     DocumentReference documentReference =
-    FirebaseFirestore.instance.collection("Currently Reading").doc(item);
+    FirebaseFirestore.instance.collection("Currently Reading").doc(user?.uid).collection('Reading').doc(item);
 
     documentReference.delete().whenComplete(() => print("deleted successfully"));
   }
@@ -34,7 +35,7 @@ class _CurrentState extends State<Current> {
         title: Text('Currently Reading'),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection("Currently Reading").snapshots(),
+        stream: FirebaseFirestore.instance.collection('Currently Reading').doc(user?.uid).collection('Reading').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text('Something went wrong');
@@ -50,10 +51,10 @@ class _CurrentState extends State<Current> {
                       child: Card(
                         elevation: 4,
                         child: ListTile(
-                          title: Text((documentSnapshot != null) ? (documentSnapshot["currTitle"]) : ""),
+                          title: Text((documentSnapshot != null) ? (documentSnapshot["readingTitle"]) : ""),
                           subtitle: Text((documentSnapshot != null)
-                              ? ((documentSnapshot["currDescription"] != null)
-                              ? documentSnapshot["currDescription"]
+                              ? ((documentSnapshot["readingDescription"] != null)
+                              ? documentSnapshot["readingDescription"]
                               : "")
                               : ""),
                           trailing: IconButton(
@@ -62,7 +63,7 @@ class _CurrentState extends State<Current> {
                             onPressed: () {
                               setState(() {
                                 //todos.removeAt(index);
-                                deleteTodo((documentSnapshot != null) ? (documentSnapshot["currTitle"]) : "");
+                                deleteTodo((documentSnapshot != null) ? (documentSnapshot["readingTitle"]) : "");
                               });
                             },
                           ),

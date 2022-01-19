@@ -11,18 +11,19 @@ class Want extends StatefulWidget {
 class _WantState extends State<Want> {
   String title = "";
   String description = "";
+  var user = FirebaseAuth.instance.currentUser;
   createToDo() {
-    DocumentReference documentReference = FirebaseFirestore.instance.collection('Want to Read').doc(title);
+    DocumentReference documentReference = FirebaseFirestore.instance.collection('Want to Read').doc(user?.uid).collection('Future').doc(title);
     Map<String, String> readList = {
-      "wantTitle": title,
-      "wantDescription": description
+      "futureTitle": title,
+      "futureDescription": description
     };
     documentReference.set(readList).whenComplete(() => print("Data Stored"));
   }
   deleteTodo(item) {
 
     DocumentReference documentReference =
-    FirebaseFirestore.instance.collection("Want to Read").doc(item);
+    FirebaseFirestore.instance.collection("Want to Read").doc(user?.uid).collection('Future').doc(item);
 
     documentReference.delete().whenComplete(() => print("deleted successfully"));
   }
@@ -34,7 +35,7 @@ class _WantState extends State<Want> {
         title: Text('Want to Read'),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection("Want to Read").snapshots(),
+        stream: FirebaseFirestore.instance.collection('Want to Read').doc(user?.uid).collection('Future').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text('Something went wrong');
@@ -50,10 +51,10 @@ class _WantState extends State<Want> {
                       child: Card(
                         elevation: 4,
                         child: ListTile(
-                          title: Text((documentSnapshot != null) ? (documentSnapshot["wantTitle"]) : ""),
+                          title: Text((documentSnapshot != null) ? (documentSnapshot["futureTitle"]) : ""),
                           subtitle: Text((documentSnapshot != null)
-                              ? ((documentSnapshot["wantDescription"] != null)
-                              ? documentSnapshot["wantDescription"]
+                              ? ((documentSnapshot["futureDescription"] != null)
+                              ? documentSnapshot["futureDescription"]
                               : "")
                               : ""),
                           trailing: IconButton(
@@ -62,7 +63,7 @@ class _WantState extends State<Want> {
                             onPressed: () {
                               setState(() {
                                 //todos.removeAt(index);
-                                deleteTodo((documentSnapshot != null) ? (documentSnapshot["wantTitle"]) : "");
+                                deleteTodo((documentSnapshot != null) ? (documentSnapshot["futureTitle"]) : "");
                               });
                             },
                           ),

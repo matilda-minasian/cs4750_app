@@ -11,8 +11,9 @@ class AlreadyRead extends StatefulWidget {
 class _AlreadyReadState extends State<AlreadyRead> {
   String title = "";
   String description = "";
+  var user = FirebaseAuth.instance.currentUser;
   createToDo() {
-    DocumentReference documentReference = FirebaseFirestore.instance.collection('Already Read').doc(title);
+    DocumentReference documentReference = FirebaseFirestore.instance.collection('Already Read').doc(user?.uid).collection('Read').doc(title);
     Map<String, String> readList = {
       "readTitle": title,
       "readDescription": description
@@ -22,7 +23,7 @@ class _AlreadyReadState extends State<AlreadyRead> {
   deleteTodo(item) {
 
     DocumentReference documentReference =
-    FirebaseFirestore.instance.collection("Already Read").doc(item);
+    FirebaseFirestore.instance.collection("Already Read").doc(user?.uid).collection('Read').doc(item);
 
     documentReference.delete().whenComplete(() => print("deleted successfully"));
   }
@@ -34,7 +35,7 @@ class _AlreadyReadState extends State<AlreadyRead> {
         title: Text('Already Read'),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection("Already Read").snapshots(),
+        stream: FirebaseFirestore.instance.collection('Already Read').doc(user?.uid).collection('Read').snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text('Something went wrong');
@@ -90,21 +91,15 @@ class _AlreadyReadState extends State<AlreadyRead> {
                   title: const Text("Add Book"),
                   content: Container(
                     width: 400,
-                    height: 150,
+                    height: 100,
                     child: Column(
                       children: [
                         TextField(
-                          decoration: InputDecoration(
-                            labelText: 'Title'
-                          ),
                           onChanged: (String value) {
                             title = value;
                           },
                         ),
                         TextField(
-                          decoration: InputDecoration(
-                              labelText: 'Author'
-                          ),
                           onChanged: (String value) {
                             description = value;
                           },
