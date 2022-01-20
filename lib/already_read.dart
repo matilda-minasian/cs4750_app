@@ -18,14 +18,14 @@ class _AlreadyReadState extends State<AlreadyRead> {
       "readTitle": title,
       "readDescription": description
     };
-    documentReference.set(readList).whenComplete(() => print("Data Stored"));
+    documentReference.set(readList);
   }
   deleteTodo(item) {
 
     DocumentReference documentReference =
     FirebaseFirestore.instance.collection("Already Read").doc(user?.uid).collection('Read').doc(item);
 
-    documentReference.delete().whenComplete(() => print("deleted successfully"));
+    documentReference.delete();
   }
 
   @override

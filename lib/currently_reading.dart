@@ -18,14 +18,14 @@ class _CurrentState extends State<Current> {
       "readingTitle": title,
       "readingDescription": description
     };
-    documentReference.set(readList).whenComplete(() => print("Data Stored"));
+    documentReference.set(readList);
   }
   deleteTodo(item) {
 
     DocumentReference documentReference =
     FirebaseFirestore.instance.collection("Currently Reading").doc(user?.uid).collection('Reading').doc(item);
 
-    documentReference.delete().whenComplete(() => print("deleted successfully"));
+    documentReference.delete();
   }
 
   @override

@@ -23,14 +23,14 @@ class _HomeScreenState extends State<HomeScreen> {
       "Title": title,
       "Comment": description
     };
-    documentReference.set(readList).whenComplete(() => print("Data Stored"));
+    documentReference.set(readList);
   }
   deleteTodo(item) {
 
     DocumentReference documentReference =
     FirebaseFirestore.instance.collection("Books").doc(item);
 
-    documentReference.delete().whenComplete(() => print("deleted successfully"));
+    documentReference.delete();
   }
   @override
   Widget build(BuildContext context) {

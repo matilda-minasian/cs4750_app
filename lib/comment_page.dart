@@ -14,14 +14,14 @@ class Comments extends StatelessWidget {
       "Title": title2,
       "Comment": description
     };
-    documentReference.set(readList).whenComplete(() => print("Data Stored"));
+    documentReference.set(readList);
   }
   deleteTodo(item) {
 
     DocumentReference documentReference =
     FirebaseFirestore.instance.collection("Comments").doc(title).collection('Comment').doc(item);
 
-    documentReference.delete().whenComplete(() => print("deleted successfully"));
+    documentReference.delete();
   }
   Comments(this.title, this.comment);
 
@@ -140,16 +140,7 @@ class Comments extends StatelessWidget {
                                             ? documentSnapshot["Comment"]
                                             : "")
                                             : ""),
-                                        trailing: IconButton(
-                                          icon: const Icon(Icons.delete),
-                                          color: Colors.red,
-                                          onPressed: () {
 
-                                            //todos.removeAt(index);
-                                            deleteTodo((documentSnapshot != null) ? (documentSnapshot["Title"]) : "");
-
-                                          },
-                                        ),
                                       ),
                                     ));
                               });
