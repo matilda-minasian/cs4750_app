@@ -3,6 +3,7 @@ import 'package:cs4750app/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -53,27 +54,39 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+
     future: Firebase.initializeApp();
     return Scaffold(
-
       appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
         title: Text('Elite Book Club'),
       ),
       body:
-      Center(
+      Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.blueAccent,
+              Colors.orangeAccent,
+            ]
+          )
+        ),
         child: Column(
           children: <Widget>[
             Container(
               height: 100,
+              margin: EdgeInsets.only(top:10),
               child:
-              Image(image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5Epj-JqKDn8vmA0uswkDFG3srQyMX4zrw5-FQi20P-SFr97VhG4O7K9Z3uB7-bvKpEi4&usqp=CAU'),),
-
+              Icon(Icons.menu_book_rounded, size: 100,color: Colors.orange,)
             ),
             Container(
               width: 300,
-              margin: EdgeInsets.only(top:40),
+              margin: EdgeInsets.only(top:20),
               child:
               Text(
                 'Please Login Below',
@@ -88,21 +101,27 @@ class _MyHomePageState extends State<MyHomePage> {
               TextField(
                 controller: emailController,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black)
+                  ),
                   labelText: 'Email',
+                  labelStyle: TextStyle(color: Colors.black)
                 ),
               ),
             ),
             Container(
                 width: 300,
-                margin: EdgeInsets.only(bottom: 20),
+                margin: EdgeInsets.only(bottom: 10),
                 child:
                 TextField(
                   controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)
+                      ),
+                      labelText: 'Password',
+                      labelStyle: TextStyle(color: Colors.black)
                   ),
                 ),
             ),
@@ -110,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.all(20),
+                  margin: EdgeInsets.only(top:20, left: 20,right: 20),
                   child:
                   ElevatedButton(
                     onPressed: () {
@@ -124,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(20),
+                  margin: EdgeInsets.only(top:20, left: 20,right: 20),
                   child:
                   ElevatedButton(
                     onPressed: () {

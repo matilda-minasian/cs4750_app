@@ -1,3 +1,4 @@
+import 'package:cs4750app/account_page.dart';
 import 'package:cs4750app/homescreen.dart';
 import 'package:cs4750app/list_page.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class _BottomNavState extends State<BottomNav> {
   final screens = [
     HomeScreen(),
     ListPage(),
+    Account(),
   ];
   @override
   Widget build(BuildContext context) {

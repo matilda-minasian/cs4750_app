@@ -51,6 +51,7 @@ class _WantState extends State<Want> {
                       child: Card(
                         elevation: 4,
                         child: ListTile(
+                          tileColor: Colors.orangeAccent,
                           title: Text((documentSnapshot != null) ? (documentSnapshot["futureTitle"]) : ""),
                           subtitle: Text((documentSnapshot != null)
                               ? ((documentSnapshot["futureDescription"] != null)
@@ -91,18 +92,40 @@ class _WantState extends State<Want> {
                   title: const Text("Add Book"),
                   content: Container(
                     width: 400,
-                    height: 100,
+                    height: 150,
+                    margin: EdgeInsets.only(bottom: 10),
                     child: Column(
                       children: [
-                        TextField(
-                          onChanged: (String value) {
-                            title = value;
-                          },
+                        Container(
+                          margin: EdgeInsets.only(bottom: 20),
+                          child:
+                          TextField(
+                            decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black)
+                                ),
+                                labelText: 'Title',
+                                labelStyle: TextStyle(color: Colors.black)
+                            ),
+                            onChanged: (String value) {
+                              title = value;
+                            },
+                          ),
                         ),
-                        TextField(
-                          onChanged: (String value) {
-                            description = value;
-                          },
+                        Container(
+                          child:
+                          TextField(
+                            decoration: InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black)
+                                ),
+                                labelText: 'Author',
+                                labelStyle: TextStyle(color: Colors.black)
+                            ),
+                            onChanged: (String value) {
+                              description = value;
+                            },
+                          ),
                         ),
                       ],
                     ),
